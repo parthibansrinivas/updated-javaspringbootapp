@@ -72,7 +72,7 @@ pipeline {
                     script {
                         echo "Login to Azure"
                         sh '''
-                        az login --service principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                        az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
                         az acr login --name $ACR_NAME
                         '''
                     }
@@ -96,7 +96,7 @@ pipeline {
                     script {
                         echo "Azure Login to AKS"
                         sh '''
-                        az login --service principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                        az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
                         az aks get-credentials --resource-group $RESOURCE_GROUP  --name $CLUSTER_NAME
                         '''
                     }
