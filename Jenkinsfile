@@ -3,7 +3,7 @@ pipeline {
     tools {
         maven 'maven'
     }
-    envirnment {
+    environment {
         IMAGE_NAME = "springbootapp"
         IMAGE_TAG = "latest"
         ACR_NAME = "springbootcontainerregistry"
