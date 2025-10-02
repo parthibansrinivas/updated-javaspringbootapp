@@ -29,7 +29,7 @@ pipeline {
                     $SCANNER_HOME/bin/sonar-scanner \
                     -Dsonar.organization=parthibansrinivas \
                     -Dsonar.projectName=BootcampProject1 \
-                    -Dsonar.projectkey=parthibansrinivas_bootcampproject1 \
+                    -Dsonar.projectKey=parthibansrinivas_bootcampproject1 \
                     -Dsonar.java.binaries=.
                     '''
                 }
