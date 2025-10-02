@@ -9,6 +9,10 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/parthibansrinivas/updated-javaspringbootapp.git'
             }
         }
-        
+        stage('Maven Validate'){
+            steps {
+                sh 'mvn validate'
+            }
+        }
     }
 }
