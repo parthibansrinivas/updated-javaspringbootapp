@@ -1,20 +1,14 @@
 pipeline {
     agent any 
+    tools {
+        maven 'maven'
+    }
     stages {
-        stage('Build') { 
+        stage('checkout from Git') { 
             steps {
-                echo 'This is a Build Stage'
+                git branch: 'main', url: 'https://github.com/parthibansrinivas/updated-javaspringbootapp.git'
             }
         }
-        stage('Test') { 
-            steps {
-                echo 'This is a Test Stage'
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                echo 'This is a Deploy Stage'
-            }
-        }
+        
     }
 }
