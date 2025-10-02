@@ -10,6 +10,8 @@ pipeline {
         ACR_LOGIN_SERVER = "springbootcontainerregistry.azurecr.io"
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         TENANT_ID = "45a30f73-9233-413b-be36-ad7952e59daa"
+        RESOURCE_GROUP = "project1"
+        CLUSTER_NAME = "demo-eks"
 
     }
     stages {
@@ -85,6 +87,19 @@ pipeline {
                     docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${FULL_IMAGE_NAME}
                     docker push ${FULL_IMAGE_NAME}
                     '''
+                }
+            }
+        }
+        stage ('Login to AKS Cluster'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'azure-acr-sp', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]){
+                    script {
+                        echo "Azure Login to AKS"
+                        sh '''
+                        az login --service principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                        az aks get-credentials --resource-group $RESOURCE_GROUP  --name $CLUSTER_NAME
+                        '''
+                    }
                 }
             }
         }
